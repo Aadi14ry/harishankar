@@ -20,25 +20,48 @@ export default function DocumentActions() {
             * { box-sizing: border-box; }
             html, body {
               margin: 0;
-              min-height: 100%;
+              width: 100%;
+              height: 100%;
               background: #ffffff;
+              overflow: hidden;
             }
             body {
               display: flex;
-              align-items: flex-start;
+              align-items: center;
               justify-content: center;
-              padding: 0;
+              padding: 5mm;
             }
             img {
               display: block;
-              width: 100%;
-              max-width: 100%;
+              width: auto;
               height: auto;
+              max-width: 100%;
+              max-height: calc(100vh - 10mm);
+              object-fit: contain;
             }
-            @page { margin: 10mm; }
+            @page {
+              size: A4 portrait;
+              margin: 0;
+            }
             @media print {
-              body { display: block; }
-              img { width: 100%; page-break-inside: avoid; }
+              html, body {
+                width: 210mm;
+                height: 297mm;
+                overflow: hidden;
+              }
+              body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5mm;
+              }
+              img {
+                max-width: 200mm;
+                max-height: 287mm;
+                page-break-before: avoid;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+              }
             }
           </style>
         </head>
