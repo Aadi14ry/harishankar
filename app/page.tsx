@@ -1,12 +1,22 @@
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { FaEnvelope, FaLinkedinIn, FaPhoneVolume } from "react-icons/fa";
 import DocumentActions from "@/components/DocumentActions";
+import SignOutButton from "@/components/SignOutButton";
+import { authOptions } from "@/lib/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/login");
+
   return (
     <section className="min-h-screen bg-[#eeeeee] px-3 py-0 text-[#f7f1ef] sm:px-6 sm:py-8">
-      <div className="mx-auto flex w-full max-w-[900px] flex-col items-center gap-8">
-        <article className="relative grid aspect-[900/620] w-full max-w-[900px] grid-cols-[42.1%_57.9%] overflow-hidden border-t-2 border-[#ff9589] bg-[#30303e] shadow-[18px_22px_22px_rgba(0,0,0,0.32)] sm:aspect-[900/486]">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center gap-8">
+        <div className="flex w-full justify-end">
+          <SignOutButton />
+        </div>
+        <article className="relative grid aspect-[900/620] w-full max-w-[1400px] grid-cols-[42.1%_57.9%] overflow-hidden border-t-2 border-[#ff9589] bg-[#30303e] shadow-[18px_22px_22px_rgba(0,0,0,0.32)] sm:aspect-[900/486]">
           <div className="relative bg-white">
             <div className="relative h-full overflow-hidden bg-white">
               <Image
@@ -58,7 +68,7 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 h-[6.38%] w-full bg-[#ff9589]" />
         </article>
 
-        <article className="grid aspect-[900/620] w-full max-w-[900px] grid-cols-[58.5%_41.5%] overflow-hidden bg-[#30303e] shadow-[18px_22px_22px_rgba(0,0,0,0.32)] sm:aspect-[900/486]">
+        <article className="grid aspect-[900/620] w-full max-w-[1400px] grid-cols-[58.5%_41.5%] overflow-hidden bg-[#30303e] shadow-[18px_22px_22px_rgba(0,0,0,0.32)] sm:aspect-[900/486]">
           <div className="relative bg-[#30303e] px-[4%] py-[4%]">
             <p className="text-[clamp(13px,2.78vw,25px)] font-light uppercase leading-[0.92] tracking-[0.06em] text-[#ff8f84]">
               Harishankar
@@ -98,16 +108,6 @@ export default function Home() {
         </article>
 
         <DocumentActions />
-
-        <div className="relative w-full max-w-[900px] overflow-hidden bg-white shadow-[18px_22px_22px_rgba(0,0,0,0.24)]">
-          <Image
-            src="/document.png"
-            alt="Citizenship document"
-            width={1414}
-            height={2048}
-            className="h-auto w-full object-contain"
-          />
-        </div>
       </div>
     </section>
   );
