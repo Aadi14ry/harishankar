@@ -147,18 +147,6 @@ export default function LoginExperience() {
               </div>
             </div>
 
-            <div className="flex justify-end pt-1">
-              <button
-                type="button"
-                onClick={() =>
-                  setMessage("Please contact the site administrator to reset your password.")
-                }
-                className="text-sm font-semibold text-[#bd5e57] underline-offset-4 transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#ff9589]"
-              >
-                Forgot password?
-              </button>
-            </div>
-
             <button
               type="submit"
               disabled={isSubmitting}
