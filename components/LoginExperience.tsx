@@ -20,7 +20,7 @@ export default function LoginExperience() {
     const formData = new FormData(event.currentTarget);
     try {
       const result = await signIn("credentials", {
-        email: formData.get("email"),
+        identifier: formData.get("identifier"),
         password: formData.get("password"),
         redirect: false,
       });
@@ -83,17 +83,17 @@ export default function LoginExperience() {
               Welcome back
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#74747e]">
-              Sign in with your email and password to continue.
+              Sign in with your Gmail address or username and password.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="identifier"
                 className="mb-2 block text-sm font-semibold text-[#30303e]"
               >
-                Email address
+                Gmail address / Username
               </label>
               <div className="relative">
                 <Mail
@@ -101,11 +101,11 @@ export default function LoginExperience() {
                   className="pointer-events-none absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#888892]"
                 />
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="identifier"
+                  name="identifier"
+                  type="text"
                   autoComplete="username"
-                  placeholder="name@example.com"
+                  placeholder="Gmail address or username"
                   required
                   className="h-12 w-full rounded-md border border-[#dedde0] bg-white pl-11 pr-4 text-sm text-[#30303e] outline-none transition placeholder:text-[#a3a2aa] focus:border-[#db7169] focus:ring-2 focus:ring-[#ff9589]/25"
                 />

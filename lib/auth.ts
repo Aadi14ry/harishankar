@@ -12,21 +12,22 @@ const sql = neon(process.env.DATABASE_URL);
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Email and password",
+      name: "Email or username and password",
       credentials: {
-        email: { label: "Email address", type: "email" },
+        identifier: { label: "Gmail address or username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const email = credentials?.email?.trim().toLowerCase();
+        const identifier = credentials?.identifier?.trim().toLowerCase();
         const password = credentials?.password;
 
-        if (!email || !password) return null;
+        if (!identifier || !password) return null;
 
         const users = await sql`
           SELECT id::text AS id, email, password_hash, is_active
           FROM app_users
-          WHERE email = ${email}
+          WHERE email = ${identifier} OR lower(username) = ${identifier}
+          ORDER BY CASE WHEN email = ${identifier} THEN 0 ELSE 1 END
           LIMIT 1
         `;
         const user = users[0];
