@@ -43,7 +43,7 @@ export default function LoginExperience() {
     <main className="min-h-screen bg-[#f7f6f4] text-[#30303e] lg:grid lg:grid-cols-[1.08fr_0.92fr]">
       <section className="relative isolate h-[38vh] min-h-[280px] max-h-[420px] overflow-hidden bg-[#30303e] lg:h-screen lg:max-h-none">
         <Image
-          src="/pp.png"
+          src="https://cdn.kimkim.com/files/a/images/2111653fb8b1045737fc22fe6f5e3bdd004e4019/original-d3ac590e3a68dfa796ad7750c7dc857a.jpg"
           alt="Harishankar Chaudhary"
           fill
           priority
