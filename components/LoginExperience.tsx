@@ -25,8 +25,13 @@ export default function LoginExperience() {
         redirect: false,
       });
 
-      if (result?.error) {
+      if (result?.error === "CredentialsSignin") {
         setMessage("Email or password is incorrect.");
+        return;
+      }
+
+      if (result?.error) {
+        setMessage("The sign-in service is unavailable. Please try again later.");
         return;
       }
 
