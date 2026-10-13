@@ -47,6 +47,7 @@ export default function LoginExperience() {
           alt="Harishankar Chaudhary"
           fill
           priority
+          unoptimized
           sizes="(max-width: 1023px) 100vw, 54vw"
           className="-z-20 object-cover object-[center_20%]"
         />
